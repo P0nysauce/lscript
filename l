@@ -5916,19 +5916,24 @@ function RF_tools
 		else
 			echo -e ""$RS" 1"$CE") "$RS"Multimon-ng"$CE"                Digital signal decoder"
 		fi
-	then
-			if [[ -f /usr/bin/multimon-ng ]]
+		echo -e ""$YS" b"$CE") Go back"
+		echo -e ""$YS"00"$CE") Main menu"
+		echo -e "Choose: "
+		read RF
+		clear
+		if [[ "$RF" = 1 ]]
+		then
+		if [[ -f /usr/bin/multimon-ng ]]
+		then
+			multimon-ng
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
 			then
-				multimon-nginx
+				install_multimon-ng
 			else
-				echo -e "$TNI"
-				read INSTALL
-				if [[ "$INSTALL" = "install" ]]
-				then
-					install_multimon-ng
-				else
-					continue
-				fi
+				continue
 			fi
 }		
 function other_tools
