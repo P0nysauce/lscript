@@ -5546,6 +5546,55 @@ function information_gathering
 		$READAK
 	done
 }
+function RF_tools
+{
+	while true 
+	do
+		clear
+		TERMINALTITLE="RF Tools"
+		dash_calc
+		printf '\033]2;RF Tools\a'
+		if [[ -f /usr/bin/multimon-ng ]]
+		then
+			echo -e ""$YS" 1"$CE") Multimon-ng                Multiple Signal Decoder"
+		else
+			echo -e ""$RS" 1"$CE") "$RS"Multimon-ng"$CE"                Multiple Signal Decoder"
+		fi
+		echo -e ""$YS" b"$CE") Go back"
+		echo -e ""$YS"00"$CE") Main menu"
+		echo -e "Choose: "
+		read RFTO
+		clear
+		if [[ "$RFTO" = 1 ]]
+		then
+			if [[ -f /usr/bin/multimon-ng ]]
+			then
+				multimon-ng
+			else
+				echo -e "$TNI"
+				read INSTALL
+				if [[ "$INSTALL" = "install" ]]
+				then
+					install_multimon
+				else
+					continue
+				fi
+			fi
+
+		elif [[ "$INFOG" = 0 ]]
+		then
+			exit
+		elif [[ "$INFOG" = 00 ]]
+		then
+			exec bash $0
+		elif [[ "$INFOG" = "back" || "$INFOG" = "b" ]]
+		then
+			break
+		fi
+		echo -e "$PAKTGB"
+		$READAK
+	done
+}
 function website_tools
 {
 	while true 
@@ -9831,6 +9880,10 @@ check_if_ks
 	{
 		apt-get install -y wifite
 	}
+	function install_multimon
+	{
+		apt-get install -y multimon-ng
+	}
 	function install_wifiphisher
 	{
 		foldname="wifiphisher"
@@ -10646,10 +10699,6 @@ check_if_ks
 	function install_sqlmap
 	{
 		apt-get install sqlmap
-	}
-	function install_multimon-ng
-	{
-		apt-get install multimon-ng
 	}
 	function install_patator
 	{
