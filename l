@@ -3122,13 +3122,13 @@ do
 	fi
 done
 }
-function wifi_tools
+function Network_tools
 {
 	while true
 	do
-	printf '\033]2;WIFI TOOLS\a'
+	printf '\033]2;NETWORK TOOLS\a'
 	clear
-	TERMINALTITLE="WIFI TOOLS"
+	TERMINALTITLE="NETWORK TOOLS"
 	dash_calc
 	if [[ -d /root/fluxion ]]
 	then
@@ -3315,6 +3315,12 @@ function wifi_tools
 		echo -e ""$YS"30"$CE") SocialFish            Ultimate phishing tool with Ngrok integrated"
 	else
 		echo -e ""$RS"30"$CE") "$RS"SocialFish"$CE"            Ultimate phishing tool with Ngrok integrated"
+	fi
+	if [[ -f /usr/bin/yersinia ]]
+	then
+		echo -e ""$YS"31"$CE") yersinia                Layer 2 attack framework"
+	else
+		echo -e ""$RS"31"$CE") "$RS"yersinia"$CE"                Layer 2 attack framework"
 	fi
 	echo -e ""$YS" b"$CE") Go back"
 	echo -e ""$YS"00"$CE") Main menu"
@@ -3866,6 +3872,23 @@ function wifi_tools
 			if [[ "$INSTALL" = "install" ]]
 			then
 				install_socialfish
+			else
+				continue
+			fi
+		fi
+		cd
+	elif [[ "$APPP" = "31" ]]
+	then
+		if [[ -d "/usr/bin/yersinia" ]]
+		then
+			cd /usr/bin
+			yersinia
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_yersinia
 			else
 				continue
 			fi
@@ -6480,7 +6503,7 @@ function tools_menu
 	TERMINALTITLE="TOOLS"
 	dash_calc
 	printf '\033]2;TOOLS\a'
-	echo -e ""$YS" 1"$CE") Wifi tools"
+	echo -e ""$YS" 1"$CE") Network tools"
 	echo -e ""$YS" 2"$CE") Remote access"
 	echo -e ""$YS" 3"$CE") Information gathering"
 	echo -e ""$YS" 4"$CE") Webside tools"
@@ -6495,7 +6518,7 @@ function tools_menu
 	clear
 		if [[ "$CATEG" = "1" ]]
 		then
-			wifi_tools
+			Network_tools
 		elif [[ "$CATEG" = "2" ]]
 		then
 			remote_access
@@ -10564,6 +10587,20 @@ check_if_ks
 		then
 			python installer.py
 			chmod +x /usr/bin/sechub
+		fi
+	}
+	function install_yersinia
+	{
+		foldname="yersinia"
+		gitlink="https://github.com/tomac/yersinia.git"
+		install_default
+		cloned=$?
+		if [[ "$cloned" == 1 ]]
+		then
+			autogen.sh
+			configure
+			make
+			make install
 		fi
 	}
 	function install_beef
