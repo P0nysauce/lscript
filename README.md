@@ -1,3 +1,25 @@
+## LAZY Script V3.0.0
+
+I've decided to take this on because it's so damn useful!
+
+Updates so far
+-new tools
+-1 new category
+-typo fixes
+
+not much but it's a start.
+
+## Installation
+```
+sudo-su
+cd
+apt-get update
+git clone https://github.com/P0nysauce/lscript.git
+cd lscript
+chmod +x l
+./l
+```
+
 *The lazy script has not been updated for a while due to me being very busy with my life. I will try my best to upload an update when I find the time*
 
 ## Welcome to the LAZY script  v2.1.4
