@@ -5517,8 +5517,10 @@ function information_gathering
 			then
 				clear
 				cd /root/CloudPeler
-				./crimeflare.php
-				cd
+				echo -e "Enter the IP you want to Attack: "
+				read IP
+				clear
+				./crimeflare.php $IP
 			else
 				echo -e "$TNI"
 				read INSTALL
@@ -5898,6 +5900,37 @@ function website_tools
 		#~ $READAK
 	done
 }
+function RF_tools
+{
+	while true 
+	do
+		clear
+		TERMINALTITLE="RF Tools"
+		dash_calc
+		printf '\033]2;RF Tools\a'
+		if [[ "$RF" = 1 ]]
+		then
+			if [[ -f /usr/bin/multimon-ng ]]
+		then
+			echo -e ""$YS" 1"$CE") Multimon-ng                Digital signal decoder"
+		else
+			echo -e ""$RS" 1"$CE") "$RS"Multimon-ng"$CE"                Digital signal decoder"
+		fi
+	then
+			if [[ -f /usr/bin/multimon-ng ]]
+			then
+				multimon-nginx
+			else
+				echo -e "$TNI"
+				read INSTALL
+				if [[ "$INSTALL" = "install" ]]
+				then
+					install_multimon-ng
+				else
+					continue
+				fi
+			fi
+}		
 function other_tools
 {
 while true
@@ -6506,9 +6539,10 @@ function tools_menu
 	echo -e ""$YS" 1"$CE") Network tools"
 	echo -e ""$YS" 2"$CE") Remote access"
 	echo -e ""$YS" 3"$CE") Information gathering"
-	echo -e ""$YS" 4"$CE") Webside tools"
+	echo -e ""$YS" 4"$CE") Website tools"
 	echo -e ""$YS" 5"$CE") Others"
-	echo -e ""$YS" 6"$CE") Install/reinstall a tool"
+	echo -e ""$YS" 6"$CE") RF Tools"
+	echo -e ""$YS" 7"$CE") Install/reinstall a tool"
 	echo -e ""$YS" i"$CE") Info"
 	echo -e ""$YS" b"$CE") Go back"
 	#~ echo -e ""$YS"00"$CE") Main menu"
@@ -6532,6 +6566,9 @@ function tools_menu
 		then
 			other_tools
 		elif [[ "$CATEG" = "6" ]]
+		then
+			RF_tools
+		elif [[ "$CATEG" = "7" ]]
 		then
 			NOCONFIRM=0
 			reinstall_tools
@@ -10640,6 +10677,10 @@ check_if_ks
 	function install_sqlmap
 	{
 		apt-get install sqlmap
+	}
+	function install_multimon-ng
+	{
+		apt-get install multimon-ng
 	}
 	function install_patator
 	{
