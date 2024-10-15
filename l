@@ -3318,9 +3318,9 @@ function Network_tools
 	fi
 	if [[ -f /usr/bin/yersinia ]]
 	then
-		echo -e ""$YS"31"$CE") yersinia                Layer 2 attack framework"
+		echo -e ""$YS"31"$CE") yersinia               Layer 2 attack framework"
 	else
-		echo -e ""$RS"31"$CE") "$RS"yersinia"$CE"                Layer 2 attack framework"
+		echo -e ""$RS"31"$CE") "$RS"yersinia"$CE"               Layer 2 attack framework"
 	fi
 	echo -e ""$YS" b"$CE") Go back"
 	echo -e ""$YS"00"$CE") Main menu"
@@ -3879,7 +3879,7 @@ function Network_tools
 		cd
 	elif [[ "$APPP" = "31" ]]
 	then
-		if [[ -d "/usr/bin/yersinia" ]]
+		if [[ -f "/usr/bin/yersinia" ]]
 		then
 			cd /usr/bin
 			yersinia
