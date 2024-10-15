@@ -81,7 +81,7 @@ function defaults_l
 	fi
 #tools
 toolarray=(
-"fluxion" "sniffer" "wifite" "wifiphisher" "morpheus" "osrframework" "hakku" "trity" "cupp" "dracnmap" "fern" "kickthemout" "ghostphisher" "theeye" "xerxes"
+"fluxion" "sniffer" "wifite" "wifiphisher" "morpheus" "CrimeFlare" "osrframework" "hakku" "trity" "cupp" "dracnmap" "fern" "kickthemout" "ghostphisher" "theeye" "xerxes"
 "mdk3" "katana" "airgeddon" "4nonimizer" "beelogger" "ezsploit" "pupy" "zirikatu" "wifiautopwner" "bully" "anonsurf" "anonym8" "thefatrat" "angryip" "sniper"
 "recondog" "redhawk" "winpayloads" "chaos" "routersploit" "infoga" "nwatch" "eternalscanner" "eaphammer" "dagon" "lalin" "knockmail" "kwetza" "ngrok" "netdiscover"
 "websploit" "openvas" "shellter" "geany" "bleachbit" "vmr" "hashbuster" "findsploit" "howdoi" "operative" "netattack2" "koadic" "empire" "meterpreter_paranoid_mode"
@@ -279,7 +279,7 @@ function banner
 	echo -e ""
 	echo -e "$COL         ██╗      █████╗ ███████╗██╗   ██╗$CE v$VERSION"
 	echo -e "$COL         ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝$CE"
-	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"ARIS MELACHROINOS$CE"
+	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"ARIS MELACHROINOS, FORKED BY PONYSAUCE$CE"
 	echo -e "$COL         ██║     ██╔══██║ ███╔╝    ╚██╔╝  $CE"
 	echo -e "$COL    The  ███████╗██║  ██║███████╗   ██║  script$CE"
 	echo -e "$COL         ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   $CE"
@@ -5289,6 +5289,12 @@ function information_gathering
 		else
 			echo -e ""$RS" 7"$CE") "$RS"Osrfconsole"$CE"           Perform accurate online researches"
 		fi
+        if [[ -d /root/CloudPeler ]]
+		then
+			echo -e ""$YS" 8"$CE") CrimeFlare           Bypass Cloudflare WAF"
+		else
+			echo -e ""$RS" 8"$CE") "$RS"CrimeFlare"$CE"           Bypass Cloudflare WAF"
+		fi
 		echo -e ""$YS" b"$CE") Go back"
 		echo -e ""$YS"00"$CE") Main menu"
 		echo -e "Choose: "
@@ -5481,6 +5487,25 @@ function information_gathering
 				else
 					continue
 				fi
+			fi
+            		elif [[ "$INFOG" = 8 ]]
+		then
+			if [[ -d /root/CloudPeler ]]
+			then
+				clear
+				cd /root/CloudPeler
+				./crimeflare.php
+				cd
+			else
+				echo -e "$TNI"
+				read INSTALL
+				if [[ "$INSTALL" = "install" ]]
+				then
+					install_Crimeflare
+				else
+					continue
+				fi
+
 			fi
 		elif [[ "$INFOG" = 0 ]]
 		then
@@ -10355,6 +10380,17 @@ check_if_ks
 			pip2.7 install -r requirements.txt
 		fi
 	}
+    function install_Crimeflare
+	{
+		foldname="CloudPeler"
+		gitlink="https://github.com/zidansec/CloudPeler.git"
+		install_default
+		cloned=$?
+		if [[ "$cloned" == 1 ]]
+		then
+			sudo apt install php-curl
+		fi
+    }    
 	function install_netattack2
 	{
 
