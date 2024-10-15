@@ -5900,55 +5900,6 @@ function website_tools
 		#~ $READAK
 	done
 }
-function RF_tools
-{
-	while true 
-	do
-		clear
-		TERMINALTITLE="RF Tools"
-		dash_calc
-		printf '\033]2;RF Tools\a'
-		if [[ "$RF" = 1 ]]
-		then
-			if [[ -f /usr/bin/multimon-ng ]]
-		then
-			echo -e ""$YS" 1"$CE") Multimon-ng                Digital signal decoder"
-		else
-			echo -e ""$RS" 1"$CE") "$RS"Multimon-ng"$CE"                Digital signal decoder"
-		fi
-		echo -e ""$YS" b"$CE") Go back"
-		echo -e ""$YS"00"$CE") Main menu"
-		echo -e "Choose: "
-		read RF
-		clear
-		if [[ "$RF" = 1 ]]
-		then
-		if [[ -f /usr/bin/multimon-ng ]]
-		then
-			multimon-ng
-		else
-			echo -e "$TNI"
-			read INSTALL
-			if [[ "$INSTALL" = "install" ]]
-			then
-				install_multimon-ng
-			else
-				continue
-		fi
-	elif [[ "$RF" = 00 ]]
-	then
-		clear
-		exec bash $0
-	elif [[ "$OTHERT" = "back" || "$OTHERT" = "b" ]]
-	then
-		break
-	elif [[ "$RF" = 0 ]]
-	then
-		clear
-		exit
-	fi
-done
-}
 function other_tools
 {
 while true
