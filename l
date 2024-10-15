@@ -3322,6 +3322,12 @@ function Network_tools
 	else
 		echo -e ""$RS"31"$CE") "$RS"yersinia"$CE"               Layer 2 attack framework"
 	fi
+		if [[ -f /usr/bin/ ]]
+	then
+		echo -e ""$YS"32"$CE") AngryOxide               802.11 Attack tool built in Rust"
+	else
+		echo -e ""$RS"32"$CE") "$RS"AngryOxide"$CE"               802.11 Attack tool built in Rust"
+	fi
 	echo -e ""$YS" b"$CE") Go back"
 	echo -e ""$YS"00"$CE") Main menu"
 	#echo -e ""$YS" 0"$CE") EXIT"
@@ -3889,6 +3895,23 @@ function Network_tools
 			if [[ "$INSTALL" = "install" ]]
 			then
 				install_yersinia
+			else
+				continue
+			fi
+		fi
+		cd
+			elif [[ "$APPP" = "32" ]]
+	then
+		if [[ -d "/root/angryoxide" ]]
+		then
+			cd /root/angryoxide
+			angryoxide -i wlan0 --autohunt
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_angryoxide
 			else
 				continue
 			fi
@@ -10661,6 +10684,27 @@ check_if_ks
 			make
 			make install
 		fi
+	}
+	function install_angryoxide
+{
+		cd
+		if [[ -f "/root/angryoxide" ]]
+		then
+			echo -e "Removing old file"
+			sleep 2
+			rm -f /root/angryoxide
+		fi
+		echo -e "Downloading angryoxide"
+		sleep 2
+		wget https://github.com/Ragnt/AngryOxide/releases/download/v0.8.28/angryoxide-linux-x86_64.tar.gz
+		echo -e "Installing..."
+		tar -xf angryoxide-linux-x86_64.tar.gz
+		sleep 1
+		chmod +x install.sh
+		sleep 1
+		install.sh
+		echo -e "Done"
+		sleep 1
 	}
 	function install_beef
 	{
