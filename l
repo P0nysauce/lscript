@@ -5934,8 +5934,21 @@ function RF_tools
 				install_multimon-ng
 			else
 				continue
-			fi
-}		
+		fi
+	elif [[ "$RF" = 00 ]]
+	then
+		clear
+		exec bash $0
+	elif [[ "$OTHERT" = "back" || "$OTHERT" = "b" ]]
+	then
+		break
+	elif [[ "$RF" = 0 ]]
+	then
+		clear
+		exit
+	fi
+done
+}
 function other_tools
 {
 while true
